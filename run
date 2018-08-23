@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+require 'bundler'
+require 'dotenv/load'
+
+env = ENV['ENVIRONMENT'] || 'development'.freeze
+
+Bundler.setup(:default, env.to_sym)
+
+require_relative 'github_graphql.rb'
+
+GithubGraphql.start
