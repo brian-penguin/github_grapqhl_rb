@@ -8,6 +8,7 @@ class QueryRunner
   def run
     result = client.query(GithubQueries::ME)
     puts result.data.viewer.login
+    # Do something with the results!
   end
 
   def client
