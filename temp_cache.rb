@@ -45,16 +45,16 @@ class TempCache
 
   # TODO: move to File Helpers
   def file_older_than_age_out?(file_path)
-    file_age_in_days > FILE_AGE_OUT_IN_DAYS
+    file_age_in_days(file_path) > FILE_AGE_OUT_IN_DAYS
   end
 
   # TODO: move to File Helpers
-  def file_age_in_days
-    file_age / 86_400
+  def file_age_in_days(file_path)
+    file_age(file_path) / 86_400
   end
 
   # TODO: move to File Helpers
-  def file_age
+  def file_age(file_path)
     (Time.now - File.ctime(file_path))
   end
 end
