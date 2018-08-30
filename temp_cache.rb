@@ -9,11 +9,14 @@ class TempCache
   end
 
   def self.find_or_create(cache_path)
-    cache = new(cache_path)
-    if cache.exists?
-      cache.check_file_age!
+    new(cache_path).find_or_create
+  end
+
+  def find_or_create
+    if exists?
+      check_file_age!
     else
-      cache.create!
+      create!
     end
   end
 
@@ -40,7 +43,18 @@ class TempCache
     end
   end
 
+  # TODO: move to File Helpers
   def file_older_than_age_out?(file_path)
-    (Time.now - File.ctime(file_path))/(24*3600) > FILE_AGE_OUT_IN_DAYS
+    file_age_in_days > FILE_AGE_OUT_IN_DAYS
+  end
+
+  # TODO: move to File Helpers
+  def file_age_in_days
+    file_age / 86_400
+  end
+
+  # TODO: move to File Helpers
+  def file_age
+    (Time.now - File.ctime(file_path))
   end
 end
