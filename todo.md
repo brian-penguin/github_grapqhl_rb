@@ -5,6 +5,7 @@
 ### General
 - [] Add a logger instead of puts
 - [] Loose Error strategy
+- [] Should the entrypoint be a module of methods instead of all class_methods?
 
 ### Schema Cache
 - [x] Download Schemas from Github

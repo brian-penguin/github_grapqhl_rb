@@ -3,28 +3,27 @@ require_relative 'query_runner.rb'
 require_relative 'temp_cache.rb'
 
 # The entry path to the app
-class GithubGraphql
+class GithubGraphqlApp
   CACHE_DIR_PATH = 'cache'.freeze
 
-  def self.start
+  def start
     puts 'Starting'
-    setup
-    run
+    client = setup_client
+    run_queries(client)
     puts 'Done!'
   end
 
-  def self.setup
+  def setup_client
     reset_cache
+    # Initializes the client with the cached schemas
     GithubApi::Client
   end
 
-  def self.run
+  def run_queries(client)
     QueryRunner.run
   end
 
-  def self.reset_cache
-    # if cache dir doesn't exist, create it
-    # if cache does exist, check each file and delete anything older than a day
+  def reset_cache
     TempCache.find_or_create(CACHE_DIR_PATH)
   end
 end

@@ -7,6 +7,6 @@ env = ENV['ENVIRONMENT'] || 'development'.freeze
 
 Bundler.setup(:default, env.to_sym)
 
-require_relative 'github_graphql.rb'
+require_relative 'github_graphql_app.rb'
 
-GithubGraphql.start
+GithubGraphqlApp.new.start
