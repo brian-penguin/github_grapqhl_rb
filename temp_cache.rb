@@ -17,6 +17,8 @@ class TempCache
     end
   end
 
+  private
+
   def exists?
     File.exist?(cache_path)
   end
@@ -37,8 +39,6 @@ class TempCache
       end
     end
   end
-
-  private
 
   def file_older_than_age_out?(file_path)
     (Time.now - File.ctime(file_path))/(24*3600) > FILE_AGE_OUT_IN_DAYS
