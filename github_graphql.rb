@@ -25,11 +25,6 @@ class GithubGraphql
   def self.reset_cache
     # if cache dir doesn't exist, create it
     # if cache does exist, check each file and delete anything older than a day
-    cache = TempCache.new(CACHE_DIR_PATH)
-    if cache.exists?
-      cache.check_file_age
-    else
-      cache.create!
-    end
+    TempCache.find_or_create(CACHE_DIR_PATH)
   end
 end
