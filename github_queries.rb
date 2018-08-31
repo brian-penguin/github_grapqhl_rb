@@ -45,4 +45,30 @@ module GithubQueries
       }
     }
   GRAPHQL
+
+  ORGANIZATION_INFO = GithubApi::Client.parse <<-'GRAPHQL'
+    query($organization_login: String!) {
+      organization(login: $organization_login) {
+        teams(first: 100) {
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
+          nodes {
+            name
+            members(first: 100) {
+              totalCount
+              pageInfo {
+                hasNextPage
+                endCursor
+              }
+              nodes {
+                login
+              }
+            }
+          }
+        }
+      }
+    }
+  GRAPHQL
 end
