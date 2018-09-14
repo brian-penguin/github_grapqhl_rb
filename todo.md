@@ -30,3 +30,7 @@
 - [] Save Multiple Users and Teams
 - [] Setup Wiz
 - [] Rake task to download schemas, DB vs File (deployment dependant?)?
+
+
+# Questions
+- Is there a way to provide a default value for `first` arguments in queries?
